@@ -39,5 +39,10 @@ public class Pacman : MonoBehaviour
         {
             this.Movement.SetDirection(Vector2.right);
         }
+
+        float Angle = Mathf.Atan2(this.Movement.Direction.y, this.Movement.Direction.x);
+        this.transform.rotation = Quaternion.AngleAxis(Angle * Mathf.Rad2Deg, Vector3.forward);
+
+
     }
 }
