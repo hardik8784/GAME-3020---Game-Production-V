@@ -45,4 +45,10 @@ public class Pacman : MonoBehaviour
 
 
     }
+
+    public void ResetState()
+    {
+        this.Movement.ResetState();
+        this.gameObject.SetActive(true);
+    }
 }
