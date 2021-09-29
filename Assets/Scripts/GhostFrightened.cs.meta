@@ -1,11 +1,9 @@
 fileFormatVersion: 2
-guid: 4c28abc3614617945a541e6c1c674180
+guid: ef6b9ce901c52c54fa5537257cceeda9
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences:
-  - Pacman: {instanceID: 0}
-  - Pellets: {fileID: 6256459318023077569, guid: df6f95ff085e4d4449769273d65810b1, type: 3}
+  defaultReferences: []
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -6,7 +6,13 @@ public class Ghost : MonoBehaviour
 {
     public Movement Movement { get; private set; }
 
+    public GhostHome Home { get; private set; }
+
+    public GhostScatter Scatter { get; private set; }
+
     public GhostChase Chase { get; private set; }
+
+    public GhostFrightened Frightened { get; private set; }
 
     public GhostBehavior InitialBehavior;
     
@@ -17,7 +23,10 @@ public class Ghost : MonoBehaviour
     private void Awake()
     {
         this.Movement = GetComponent<Movement>();
+        this.Home = GetComponent<GhostHome>();
+        this.Scatter = GetComponent<GhostScatter>();
         this.Chase = GetComponent<GhostChase>();
+        this.Frightened = GetComponent<GhostFrightened>();
     }
 
     // Start is called before the first frame update
@@ -31,7 +40,19 @@ public class Ghost : MonoBehaviour
         this.gameObject.SetActive(true);
         this.Movement.ResetState();
 
-        this.Chase.Enable();
+        this.Frightened.Disable();
+        this.Chase.Disable();
+        this.Scatter.Enable();
+
+        if(this.Home != this.InitialBehavior)
+        {
+            this.Home.Disable();
+        }
+
+        if( this.InitialBehavior != null)
+        {
+            this.InitialBehavior.Enable();
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -39,7 +60,14 @@ public class Ghost : MonoBehaviour
         if(collision.gameObject.layer == LayerMask.NameToLayer("Pacman"))
         {
             Debug.Log("Pacman And Ghost Collide");
-            FindObjectOfType<GameManager>().PacmanEaten();
+            if (this.Frightened.enabled)
+            {
+                FindObjectOfType<GameManager>().GhostEaten(this);
+            }
+            else
+            {
+                FindObjectOfType<GameManager>().PacmanEaten();
+            }
         }
     }
 }
