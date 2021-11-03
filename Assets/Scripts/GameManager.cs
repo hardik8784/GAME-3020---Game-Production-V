@@ -29,6 +29,8 @@ public class GameManager : MonoBehaviour
         {
             NewGame();
         }
+
+
     }
 
     private void NewGame()

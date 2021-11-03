@@ -56,6 +56,32 @@ public class GhostFrightened : GhostBehavior
     }
 
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        //Debug.Log("Chase");
+        Node Node = collision.GetComponent<Node>();
+
+        if (Node != null && this.enabled)
+        {
+            Vector2 Direction = Vector2.zero;
+            float MaxDistance = float.MinValue;
+
+            foreach (Vector2 AvailableDirection in Node.AvailableDirections)
+            {
+                Vector3 NewPosition = this.transform.position + new Vector3(AvailableDirection.x, AvailableDirection.y, 0.0f);
+                float Distance = (this.Ghost.Pacman.position - NewPosition).sqrMagnitude;
+
+                if (Distance > MaxDistance)
+                {
+                    Direction = AvailableDirection;
+                    MaxDistance = Distance;
+                }
+            }
+
+            this.Ghost.Movement.SetDirection(Direction);
+        }
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Pacman"))
