@@ -15,7 +15,11 @@ public class GhostHome : GhostBehavior
 
     private void OnDisable()
     {
-        StartCoroutine(ExitTransitition());
+        if (this.gameObject.activeSelf)
+        {
+            StartCoroutine(ExitTransitition());
+
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
