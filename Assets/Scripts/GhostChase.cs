@@ -22,17 +22,17 @@ public class GhostChase : GhostBehavior
             Vector2 Direction = Vector2.zero;
             float MinDistance = float.MaxValue;
 
-            foreach (Vector2 AvailableDirection in Node.AvailableDirections)
-            {
-                Vector3 NewPosition = this.transform.position + new Vector3(AvailableDirection.x, AvailableDirection.y, 0.0f);
-                float Distance = (this.Ghost.Pacman.position - NewPosition).sqrMagnitude;
+            //foreach (Vector2 AvailableDirection in Node.AvailableDirections)
+            //{
+            //    Vector3 NewPosition = this.transform.position + new Vector3(AvailableDirection.x, AvailableDirection.y, 0.0f);
+            //    float Distance = (this.Ghost.Pacman.position - NewPosition).sqrMagnitude;
 
-                if(Distance < MinDistance)
-                {
-                    Direction = AvailableDirection;
-                    MinDistance = Distance;
-                }
-            }
+            //    if(Distance < MinDistance)
+            //    {
+            //        Direction = AvailableDirection;
+            //        MinDistance = Distance;
+            //    }
+            //}
 
             this.Ghost.Movement.SetDirection(Direction);
         }

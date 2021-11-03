@@ -14,9 +14,9 @@ public class Ghost : MonoBehaviour
 
     public GhostFrightened Frightened { get; private set; }
 
-    public GhostBehavior InitialBehavior;
+    //public GhostBehavior InitialBehavior;
     
-    public Transform Pacman;
+    //public Transform Pacman;
 
     public int Points = 100;
 
@@ -32,7 +32,7 @@ public class Ghost : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ResetState();
+       // ResetState();
     }
 
     public void ResetState()
@@ -44,15 +44,15 @@ public class Ghost : MonoBehaviour
         this.Chase.Disable();
         this.Scatter.Enable();
 
-        if(this.Home != this.InitialBehavior)
-        {
-            this.Home.Disable();
-        }
+        //if(this.Home != this.InitialBehavior)
+        //{
+        //    this.Home.Disable();
+        //}
 
-        if( this.InitialBehavior != null)
-        {
-            this.InitialBehavior.Enable();
-        }
+        //if( this.InitialBehavior != null)
+        //{
+        //    this.InitialBehavior.Enable();
+        //}
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

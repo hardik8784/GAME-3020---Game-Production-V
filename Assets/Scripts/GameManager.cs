@@ -45,6 +45,13 @@ public class GameManager : MonoBehaviour
             Pellets.gameObject.SetActive(true);
         }
 
+        //for( int i = 0; i < this.Ghosts.Length; i++)
+        //{
+        //    this.Ghosts[i].gameObject.SetActive(true);
+        //}
+
+        //this.Pacman.gameObject.SetActive(true);
+
         ResetState();
     }
 
@@ -113,17 +120,19 @@ public class GameManager : MonoBehaviour
 
         if (!HasRemainingPellets())
         {
-            //this.Pacman.gameObject.SetActive(false);
+            this.Pacman.gameObject.SetActive(false);
             Invoke(nameof(NewRound), 5.0f);
         }
     }
 
     public void PowerPelletEaten(PowerPellet PowerPellet)
     {
-
-        Invoke(nameof(ResetGhostMultiplier), PowerPellet.Duration);
-        CancelInvoke();
         PelletEaten(PowerPellet);
+        CancelInvoke();
+        Invoke(nameof(ResetGhostMultiplier), PowerPellet.Duration);
+        
+        //CancelInvoke();
+       //PelletEaten(PowerPellet);
     }
 
     private bool HasRemainingPellets()
