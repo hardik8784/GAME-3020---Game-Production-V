@@ -6,10 +6,17 @@ using UnityEngine;
 
 public class Pacman : MonoBehaviour
 {
+    public AnimatedSprite DeathSequence;
+
+    public SpriteRenderer SpriteRenderer { get; private set; }
+
+    public new Collider2D Collider { get; private set; }
     public Movement Movement { get; private set; }
     
     public void Awake()
     {
+        this.SpriteRenderer = GetComponent<SpriteRenderer>();
+        this.Collider = GetComponent<Collider2D>();
         this.Movement = GetComponent<Movement>();
     }
 
@@ -48,7 +55,23 @@ public class Pacman : MonoBehaviour
 
     public void ResetState()
     {
+        //this.enabled = true;
+        //this.SpriteRenderer.enabled = true;
+        //this.Collider.enabled = true;
+        //this.DeathSequence.enabled = false;
+        //this.DeathSequence.SpriteRenderer.enabled = false;
         this.Movement.ResetState();
         this.gameObject.SetActive(true);
     }
+
+    //public void FuncDeathSequence()
+    //{
+    //    this.enabled = false;
+    //    this.SpriteRenderer.enabled = false;
+    //    this.Collider.enabled = false;
+    //    this.Movement.enabled = false;
+    //    this.DeathSequence.enabled = true;
+    //    this.DeathSequence.SpriteRenderer.enabled = true;
+    //    this.DeathSequence.Restart();
+    //}
 }

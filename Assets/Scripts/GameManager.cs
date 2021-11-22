@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class GameManager : MonoBehaviour
 {
@@ -10,11 +12,22 @@ public class GameManager : MonoBehaviour
 
     public Transform Pellets;
 
+    public Text GameOverText;
+    public Text ScoreText;
+    public Text LivesText;
+
     public int GhostMultiplier { get; private set; } = 1;
 
-    public int Score { get; private set; }
+    public int Score { get; private set; } = 0;
 
-    public int Lives { get; private set; }
+    public int Lives { get; private set; } = 3;
+
+
+    public void Awake()
+    {
+        Pacman = FindObjectOfType<Pacman>();
+        Ghosts = FindObjectsOfType<Ghost>();
+    }
 
     // Start is called before the first frame update
     private void Start()
@@ -35,6 +48,7 @@ public class GameManager : MonoBehaviour
 
     private void NewGame()
     {
+        //this.GameOverText.enabled = false;
         SetScore(0);
         SetLives(3);
         NewRound();
@@ -42,10 +56,13 @@ public class GameManager : MonoBehaviour
 
     private void NewRound()
     {
+        this.GameOverText.enabled = false;
+
         foreach(Transform Pellets in this.Pellets)
         {
             Pellets.gameObject.SetActive(true);
         }
+
 
         //for( int i = 0; i < this.Ghosts.Length; i++)
         //{
@@ -59,6 +76,7 @@ public class GameManager : MonoBehaviour
 
     private void ResetState()
     {
+        //Debug.Log("Entered into Reset State");
 
         ResetGhostMultiplier();
 
@@ -72,6 +90,8 @@ public class GameManager : MonoBehaviour
 
     private void GameOver()
     {
+        this.GameOverText.enabled = true;
+
         for (int i = 0; i < this.Ghosts.Length; i++)
         {
             this.Ghosts[i].gameObject.SetActive(false);
@@ -83,11 +103,14 @@ public class GameManager : MonoBehaviour
     private void SetScore(int Score)
     {
         this.Score = Score;
+
+        this.ScoreText.text = Score.ToString();
     }
 
     private void SetLives(int Lives)
     {
         this.Lives = Lives;
+        this.LivesText.text = "x" + Lives.ToString();
     }
 
     public void GhostEaten(Ghost Ghost)
@@ -100,10 +123,12 @@ public class GameManager : MonoBehaviour
 
     public void PacmanEaten()
     {
+
+        //this.Pacman.FuncDeathSequence();
         this.Pacman.gameObject.SetActive(false);
 
         SetLives(this.Lives - 1);
-
+        
         if(this.Lives > 0)
         {
             Invoke(nameof(ResetState), 3.0f); 
