@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
 
     public int GhostMultiplier { get; private set; } = 1;
 
-    public int Score { get; private set; } = 0;
+    public int Score { get; private set; }
 
     public int Lives { get; private set; } = 3;
 
@@ -38,7 +38,9 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if(this.Lives <= 0 && Input.anyKeyDown)
+        
+
+        if (this.Lives <= 0 && Input.anyKeyDown)
         {
             NewGame();
         }
@@ -108,7 +110,7 @@ public class GameManager : MonoBehaviour
     private void SetLives(int Lives)
     {
         this.Lives = Lives;
-        this.LivesText.text = "x" + Lives.ToString();
+        this.LivesText.text = "x" + (Lives).ToString();
     }
 
     public void GhostEaten(Ghost Ghost)
