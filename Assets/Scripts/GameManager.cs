@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
 
     public int Score { get; private set; }
 
-    public int Lives { get; private set; } = 3;
+    public int Lives { get; private set; }
 
 
     public void Awake()
@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviour
     {
         //this.GameOverText.enabled = false;
         SetScore(0);
-        SetLives(3);
+        SetLives(6);
         NewRound();
     }
 
@@ -110,7 +110,7 @@ public class GameManager : MonoBehaviour
     private void SetLives(int Lives)
     {
         this.Lives = Lives;
-        this.LivesText.text = "x" + (Lives).ToString();
+        this.LivesText.text = "x" + (Lives/2).ToString();
     }
 
     public void GhostEaten(Ghost Ghost)
@@ -128,14 +128,14 @@ public class GameManager : MonoBehaviour
         //this.Pacman.gameObject.SetActive(false);
 
         SetLives(this.Lives - 1);
-        
+       
         if(this.Lives > 0)
         {
             Invoke(nameof(ResetState), 3.0f); 
         }
         else
         {
-            GameOver();
+            Invoke(nameof(GameOver), 1.0f);           
         }
     }
 
