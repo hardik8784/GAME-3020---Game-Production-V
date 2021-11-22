@@ -42,8 +42,6 @@ public class GameManager : MonoBehaviour
         {
             NewGame();
         }
-
-
     }
 
     private void NewGame()
@@ -124,8 +122,8 @@ public class GameManager : MonoBehaviour
     public void PacmanEaten()
     {
 
-        //this.Pacman.FuncDeathSequence();
-        this.Pacman.gameObject.SetActive(false);
+        this.Pacman.FuncDeathSequence();
+        //this.Pacman.gameObject.SetActive(false);
 
         SetLives(this.Lives - 1);
         

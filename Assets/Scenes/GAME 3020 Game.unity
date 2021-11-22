@@ -859,7 +859,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdec770f247e35d48991bdae6b2c8c05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DeathSequence: {fileID: 0}
+  DeathSequence: {fileID: 90007199}
 --- !u!58 &893497612
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -11039,7 +11039,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &8347835518895072757
 RectTransform:
   m_ObjectHideFlags: 0

@@ -55,23 +55,23 @@ public class Pacman : MonoBehaviour
 
     public void ResetState()
     {
-        //this.enabled = true;
-        //this.SpriteRenderer.enabled = true;
-        //this.Collider.enabled = true;
-        //this.DeathSequence.enabled = false;
-        //this.DeathSequence.SpriteRenderer.enabled = false;
+        this.enabled = true;
+        this.SpriteRenderer.enabled = true;
+        this.Collider.enabled = true;
+        this.DeathSequence.enabled = false;
+        this.DeathSequence.SpriteRenderer.enabled = false;
         this.Movement.ResetState();
         this.gameObject.SetActive(true);
     }
 
-    //public void FuncDeathSequence()
-    //{
-    //    this.enabled = false;
-    //    this.SpriteRenderer.enabled = false;
-    //    this.Collider.enabled = false;
-    //    this.Movement.enabled = false;
-    //    this.DeathSequence.enabled = true;
-    //    this.DeathSequence.SpriteRenderer.enabled = true;
-    //    this.DeathSequence.Restart();
-    //}
+    public void FuncDeathSequence()
+    {
+        this.enabled = false;
+        this.SpriteRenderer.enabled = false;
+        this.Collider.enabled = false;
+        this.Movement.enabled = false;
+        this.DeathSequence.enabled = true;
+        this.DeathSequence.SpriteRenderer.enabled = true;
+        this.DeathSequence.Restart();
+    }
 }
