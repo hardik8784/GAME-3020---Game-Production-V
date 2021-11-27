@@ -40,9 +40,11 @@ public class GameManager : MonoBehaviour
     {
         
 
-        if (this.Lives <= 0 && Input.anyKeyDown)
+        if (this.Lives <= 0 )//&& Input.anyKeyDown)
         {
-            NewGame();
+            Time.timeScale = 0;
+            this.GameOverText.enabled = true;
+            //NewGame();
         }
     }
 
