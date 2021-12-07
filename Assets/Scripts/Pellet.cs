@@ -7,9 +7,13 @@ public class Pellet : MonoBehaviour
 
     public int Points = 10;
 
+    //[Header("Eat Sound")]
+    //public AudioSource Eat_Sound;
+
     protected virtual void Eat()
     {
         FindObjectOfType<GameManager>().PelletEaten(this);
+        //Eat_Sound = GetComponent<AudioSource>();
     }
 
 
@@ -18,6 +22,7 @@ public class Pellet : MonoBehaviour
         if (collision.gameObject.layer == LayerMask.NameToLayer("Pacman"))
         {
             Eat();
+            //Eat_Sound.Play();
         }
     }
 

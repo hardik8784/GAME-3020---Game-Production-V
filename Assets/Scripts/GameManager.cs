@@ -13,8 +13,14 @@ public class GameManager : MonoBehaviour
     public Transform Pellets;
 
     public Text GameOverText;
+    public Text Score_GameOverText;
+    public Text Lives_GameOverText;
+    //public GameObject RestartGame_Button;
+
     public Text ScoreText;
     public Text LivesText;
+
+  //  public AudioSource GameSound;
 
     public int GhostMultiplier { get; private set; } = 1;
 
@@ -27,6 +33,8 @@ public class GameManager : MonoBehaviour
     {
         Pacman = FindObjectOfType<Pacman>();
         Ghosts = FindObjectsOfType<Ghost>();
+        
+       // GameSound = GetComponent<AudioSource>();
     }
 
     // Start is called before the first frame update
@@ -38,17 +46,18 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        
-
         if (this.Lives <= 0 )//&& Input.anyKeyDown)
         {
             Time.timeScale = 0;
             this.GameOverText.enabled = true;
+            this.Score_GameOverText.enabled = true;
+            this.Lives_GameOverText.enabled = true;
+            
             //NewGame();
         }
     }
 
-    private void NewGame()
+    public void NewGame()
     {
         //this.GameOverText.enabled = false;
         SetScore(0);
@@ -59,8 +68,13 @@ public class GameManager : MonoBehaviour
     private void NewRound()
     {
         this.GameOverText.enabled = false;
+        this.Score_GameOverText.enabled = false;
+        this.Lives_GameOverText.enabled = false;
+        //GameSound.Play();
+        //RestartGame_Button.SetActive(false);
 
-        foreach(Transform Pellets in this.Pellets)
+
+        foreach (Transform Pellets in this.Pellets)
         {
             Pellets.gameObject.SetActive(true);
         }
@@ -93,6 +107,11 @@ public class GameManager : MonoBehaviour
     private void GameOver()
     {
         this.GameOverText.enabled = true;
+        this.Score_GameOverText.enabled = true;
+        this.Lives_GameOverText.enabled = true;
+        //AudioSource.Destroy(GameSound);
+        //RestartGame_Button.SetActive(true);
+
 
         for (int i = 0; i < this.Ghosts.Length; i++)
         {
@@ -100,6 +119,7 @@ public class GameManager : MonoBehaviour
         }
 
         this.Pacman.gameObject.SetActive(false);
+
     }
 
     private void SetScore(int Score)
@@ -107,12 +127,14 @@ public class GameManager : MonoBehaviour
         this.Score = Score;
 
         this.ScoreText.text = Score.ToString();
+        this.Score_GameOverText.text = "Score: " + Score.ToString();
     }
 
     private void SetLives(int Lives)
     {
         this.Lives = Lives;
         this.LivesText.text = "x" + (Lives/2).ToString();
+        this.Lives_GameOverText.text = "Lives: " + (Lives/2).ToString();
     }
 
     public void GhostEaten(Ghost Ghost)
