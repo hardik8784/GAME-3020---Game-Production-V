@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -55,6 +55,26 @@ public class GameManager : MonoBehaviour
             
             //NewGame();
         }
+    }
+
+    public void OnPauseButtonPressed()
+    {
+        Time.timeScale = 0;
+    }
+
+    public void OnBackButtonPressed()
+    {
+        Time.timeScale = 1.0f;
+    }
+
+    public void OnMainMenuButtonPressed()
+    {
+        SceneManager.LoadScene("Start");
+    }
+
+    public void OnQuitButtonPressed()
+    {
+        Application.Quit();
     }
 
     public void NewGame()
