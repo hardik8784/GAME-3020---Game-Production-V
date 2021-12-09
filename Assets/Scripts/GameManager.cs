@@ -13,12 +13,15 @@ public class GameManager : MonoBehaviour
     public Transform Pellets;
 
     public Text GameOverText;
+    public Text GameWinText;
     public Text Score_GameOverText;
     public Text Lives_GameOverText;
     //public GameObject RestartGame_Button;
 
     public Text ScoreText;
     public Text LivesText;
+
+    //public GameObject MainMenuButton;
 
   //  public AudioSource GameSound;
 
@@ -67,10 +70,10 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1.0f;
     }
 
-    public void OnMainMenuButtonPressed()
-    {
-        SceneManager.LoadScene("Start");
-    }
+    //public void OnMainMenuButtonPressed()
+    //{
+    //    SceneManager.LoadScene("Start");
+    //}
 
     public void OnQuitButtonPressed()
     {
@@ -88,6 +91,7 @@ public class GameManager : MonoBehaviour
     private void NewRound()
     {
         this.GameOverText.enabled = false;
+        this.GameWinText.enabled = false;
         this.Score_GameOverText.enabled = false;
         this.Lives_GameOverText.enabled = false;
         //GameSound.Play();
@@ -192,11 +196,20 @@ public class GameManager : MonoBehaviour
         if (!HasRemainingPellets())
         {
             this.Pacman.gameObject.SetActive(false);
-            Invoke(nameof(NewRound), 5.0f);
+            //Invoke(nameof(NewRound), 5.0f);
+            this.GameWinText.enabled = true;
+            //MainMenuButton.SetActive(true);
+            WaitforSecondsAfterWin();
+            SceneManager.LoadScene("Start");
         }
     }
 
-    public void PowerPelletEaten(PowerPellet PowerPellet)
+    IEnumerator WaitforSecondsAfterWin()
+    {
+        yield return new WaitForSeconds(2000.0f);
+    }
+
+        public void PowerPelletEaten(PowerPellet PowerPellet)
     {
         for(int i=0; i< this.Ghosts.Length;i++)
         {
